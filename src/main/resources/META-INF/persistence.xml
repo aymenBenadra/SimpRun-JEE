@@ -25,7 +25,7 @@
 
         <properties>
             <property name="hibernate.show_sql" value="true"/>
-            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
             <property name="hibernate.hbm2ddl.create_namespaces" value="true"/>
             <property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect"/>
             <property name="hibernate.globally_quoted_identifiers" value="true"/>

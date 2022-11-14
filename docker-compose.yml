@@ -1,0 +1,32 @@
+services:
+  db:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: "root"
+      MYSQL_DATABASE: "simprun"
+    ports:
+      - "3306:3306"
+    volumes:
+      - "db_data:/var/lib/mysql"
+    restart: always
+  app:
+    build:
+      dockerfile: ./Dockerfile
+      target: dev
+    ports:
+      - "8090:8080"
+      - "9999:9990"
+    volumes:
+      ./target:/opt/jboss/wildfly/standalone/deployments/
+    depends_on:
+      - db
+  sonarqube:
+    image: sonarqube:lts
+    ports:
+      - 9000:9000
+    environment:
+      - SONAR_FORCEAUTHENTICATION=false
+    depends_on:
+      - app
+volumes:
+  db_data:
