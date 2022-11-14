@@ -4,10 +4,12 @@ import com.sakamoto.simprunjee.dao.interfaces.IDeliverableDAO;
 import com.sakamoto.simprunjee.entity.BriefEntity;
 import com.sakamoto.simprunjee.entity.DeliverableEntity;
 import com.sakamoto.simprunjee.entity.UserEntity;
+import jakarta.enterprise.context.ApplicationScoped;
 
 import java.util.HashMap;
 import java.util.List;
 
+@ApplicationScoped
 public class DeliverableDAO extends BaseDAO<DeliverableEntity> implements IDeliverableDAO {
     public DeliverableDAO() {
         super(DeliverableEntity.class);
