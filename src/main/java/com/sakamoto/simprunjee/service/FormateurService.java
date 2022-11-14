@@ -9,21 +9,24 @@ import com.sakamoto.simprunjee.entity.PromoEntity;
 import com.sakamoto.simprunjee.entity.UserEntity;
 import com.sakamoto.simprunjee.entity.enums.BriefStatus;
 import com.sakamoto.simprunjee.entity.enums.UserRoles;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 
 import java.sql.Date;
+import java.time.Year;
 import java.util.ArrayList;
 import java.util.List;
 
+@ApplicationScoped
 public class FormateurService {
-    private final IUserDAO apprenants;
-    private final IBriefDAO briefs;
-    private final IPromoDAO promos;
+    @Inject
+    private IUserDAO apprenants;
+    @Inject
+    private IBriefDAO briefs;
+    @Inject
+    private IPromoDAO promos;
 
-    public FormateurService(IUserDAO apprenants, IBriefDAO briefs, IPromoDAO promos) {
-        this.apprenants = apprenants;
-        this.briefs = briefs;
-        this.promos = promos;
-    }
+    public FormateurService() {}
 
     public boolean addApprenantToPromo(String username, PromoEntity promo) {
         UserEntity apprenant = apprenants.findByUsername(username);
@@ -49,7 +52,7 @@ public class FormateurService {
                 .filter(user -> user.getRole() == UserRoles.Apprenant)
                 .filter(user -> user.getPromosApprenant().size() == 0 || user.getPromosApprenant()
                         .stream()
-                        .noneMatch(promo -> promo.getYear() == new Date(System.currentTimeMillis()).getYear()))
+                        .noneMatch(promo -> promo.getYear() == Year.now().getValue()))
                 .toList();
     }
 

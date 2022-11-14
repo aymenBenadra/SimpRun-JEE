@@ -5,14 +5,17 @@ import com.sakamoto.simprunjee.dao.interfaces.IUserDAO;
 import com.sakamoto.simprunjee.entity.PromoEntity;
 import com.sakamoto.simprunjee.entity.UserEntity;
 import com.sakamoto.simprunjee.entity.enums.UserRoles;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 
 import java.util.List;
 
+@ApplicationScoped
 public class AdminService {
-
     private final IPromoDAO promos;
     private final IUserDAO users;
 
+    @Inject
     public AdminService(IPromoDAO promos, IUserDAO users) {
         this.promos = promos;
         this.users = users;

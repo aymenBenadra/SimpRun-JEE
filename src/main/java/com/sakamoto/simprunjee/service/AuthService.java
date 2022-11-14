@@ -2,15 +2,19 @@ package com.sakamoto.simprunjee.service;
 
 import com.sakamoto.simprunjee.dao.interfaces.IUserDAO;
 import com.sakamoto.simprunjee.entity.UserEntity;
+import jakarta.enterprise.context.SessionScoped;
+import jakarta.inject.Inject;
 
-public class AuthService {
+import java.io.Serializable;
 
-    private final IUserDAO users;
+@SessionScoped
+public class AuthService implements Serializable {
+
+    @Inject
+    private IUserDAO users;
     private UserEntity currentUser = null;
 
-    public AuthService(IUserDAO users) {
-        this.users = users;
-    }
+    public AuthService() {}
 
     public boolean login(String username, String password) {
         try {

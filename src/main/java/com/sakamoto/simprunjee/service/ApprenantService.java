@@ -7,14 +7,18 @@ import com.sakamoto.simprunjee.entity.DeliverableEntity;
 import com.sakamoto.simprunjee.entity.PromoEntity;
 import com.sakamoto.simprunjee.entity.UserEntity;
 import com.sakamoto.simprunjee.entity.enums.BriefStatus;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 
 import java.util.HashMap;
 import java.util.List;
 
+@ApplicationScoped
 public class ApprenantService {
     private final IBriefDAO briefs;
     private final IDeliverableDAO deliverables;
 
+    @Inject
     public ApprenantService(IBriefDAO briefs, IDeliverableDAO deliverables) {
         this.briefs = briefs;
         this.deliverables = deliverables;
